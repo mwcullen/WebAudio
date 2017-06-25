@@ -1,0 +1,31 @@
+<!-- loads the static content- y doe djanbro -->
+{% load static %}
+<!--  -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        example
+    </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'recording_test/styles/styles.css' %}">
+    <!-- Needs to include recorder js files too -->
+    <script type="text/javascript" src="{% static 'recording_test/js/third_party/node_modules/web-audio-daw/src/wad.js' %}"></script>
+    <script type="text/javascript" src="{% static 'recording_test/js/third_party/node_modules/web-audio-daw/src/tuna.js' %}"></script>
+    <script type="text/javascript" src="{% static 'recording_test/js/third_party/node_modules/web-audio-daw/src/Recorderjs/recorder.js' %}"></script>
+    <script type="text/javascript" src="{% static 'recording_test/js/third_party/node_modules/web-audio-daw/src/Recorderjs/recorderWorker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'recording_test/js/recording_test.js' %}"></script>
+    <!-- All dependencies are imported with this -->
+    <!-- <script type="text/javascript" src="{% static 'recording_test/js/source/node_modules/web-audio-daw/build/wad.js' %}"></script> -->
+</head>
+
+<body>
+    <div class="audio native">
+        Native Audio
+    </div>
+    <div class="audio recorded">
+        Recorded Audio
+    </div>
+</body>
+
+</html>
