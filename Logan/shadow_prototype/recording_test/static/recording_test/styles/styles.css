@@ -1,0 +1,90 @@
+/* NATIVE */
+
+.native-area {
+    background-color: rgba(255, 255, 0, 1);
+    width: 800px;
+}
+
+.native-area .display {
+    background-color: rgba(0, 255, 0, 1);
+}
+
+.native-area .pitch {
+    background-color: rgba(255, 0, 0, 1);
+    display: inline;
+}
+
+.native-area .decibal {
+    background-color: rgba(255, 0, 255, 1);
+    display: inline;
+}
+
+
+/* NATIVE BUTTONS */
+
+.native-area .buttons {
+    background-color: rgba(0, 255, 255, 1);
+    width: 800px;
+}
+
+.native-area .buttons .play.button {
+    background-color: rgba(255, 127, 127, 1);
+    display: inline;
+}
+
+.native-area .buttons .stop.button {
+    background-color: rgba(127, 255, 0, 1);
+    display: inline;
+}
+
+
+/* TRANSLATION AREA */
+
+.translation-area {}
+
+
+/* RECORDED */
+
+.user-area .clip {
+    background-color: lightblue;
+    width: 800px;
+}
+
+.user-area .clip .display {
+    background-color: rgba(0, 255, 0, 1);
+}
+
+.user-area .clip .recording {}
+
+.user-area .clip .pitch {
+    background-color: rgba(255, 0, 0, 1);
+    display: inline;
+}
+
+.user-area .clip .decibal {
+    background-color: rgba(255, 0, 255, 1);
+    display: inline;
+}
+
+
+/* RECORDER BUTTONS */
+
+.user-area .buttons {
+    background-color: rgba(0, 255, 255, 1);
+    width: 800px;
+}
+
+.user-area .buttons .play.button {
+    background-color: rgba(255, 127, 127, 1);
+    display: inline;
+}
+
+.user-area .buttons .record.button {
+    background-color: rgba(255, 0, 127, 1);
+    display: inline;
+}
+
+.user-area .buttons .stop.button {
+    background-color: rgba(127, 255, 0, 1);
+    display: inline;
+}

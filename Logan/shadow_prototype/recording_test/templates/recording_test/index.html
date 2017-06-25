@@ -1,0 +1,89 @@
+<!-- loads the static content- y doe djanbro -->
+{% load static %}
+<!--  -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        example recorder
+    </title>
+    <!-- Styling -->
+    <link rel="stylesheet" type="text/css" href="{% static 'recording_test/styles/styles.css' %}">
+    <!-- Scripts -->
+    <!-- Defer is used in order to guarantee that script is called after page render -->
+    <script type="text/javascript" src="{% static 'recording_test/js/recording_test.js' %}" defer></script>
+</head>
+
+<body>
+    <!-- Junk -->
+    <!-- NATIVE AREA -->
+    <div class="native-area">
+        <div class="clip">
+            Native Audio
+            <div class="display">
+                display
+            </div>
+            <div>
+                <audio class="recording" src="{% static 'recording_test/audio/kekko.wav' %}" controls></audio>
+            </div>
+            <div class="pitch">
+                Pitch
+            </div>
+            <div class="decibal">
+                Decibal
+            </div>
+        </div>
+        <!-- NATIVE SCRUBBER -->
+        <div class="buttons">
+            <div class="play button">
+                play
+            </div>
+            <div class="stop button">
+                stop
+            </div>
+        </div>
+    </div>
+    <div class="translation-area">
+        <div class="title">
+            Translation Area
+        </div>
+        <div class="translation">
+            日本語が大好きです。
+        </div>
+    </div>
+    <!-- RECORDING AREA -->
+    <div class="user-area">
+        <div class="clip">
+            Recorded Audio
+            <div class="display">
+                display
+            </div>
+            <div>
+                <audio class="recording" controls>
+                    this is a test audio element
+                </audio>
+            </div>
+            <div class="pitch">
+                Pitch
+            </div>
+            <div class="decibal">
+                Decibal
+            </div>
+        </div>
+        <!-- RECORDING SCRUBBER -->
+        <div class="buttons">
+            <div class="play button">
+                play
+            </div>
+            <div class="record button">
+                record
+            </div>
+            <div class="stop button">
+                stop
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
