@@ -1,5 +1,6 @@
 # How to Run
 Assumes usage of Python3 and not Python2
+
 0. From the repository root directory
 1. Make virtual env
 2. `virtualenv venv`
