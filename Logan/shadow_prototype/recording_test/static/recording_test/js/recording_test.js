@@ -43,6 +43,8 @@ function on_media_recorder_stop(event) {
     // Creates reference resource to retrieve audio playback
     var new_audio_url = window.URL.createObjectURL(blob)
     user_recorded_audio_element.src = new_audio_url
+    console.log(user_recorded_audio_element.src)
+    user_recorded_audio_display_wave_surfer.load(user_recorded_audio_element.src)
 
     console.log("recorder stopped")
 }
@@ -56,20 +58,35 @@ function on_media_recorder_data_available(event) {
 // Page Component Logic
 // -----------------------------------------------------------------------------
 var native_recording_audio_element = document.querySelector(".native-area .clip .recording")
-    // var user_play_button = document.querySelector(".user-area .buttons .play.button")
-    // var user_record_button = document.querySelector(".user-area .buttons .record.button")
-    // var user_stop_button = document.querySelector(".user-area .buttons .stop.button")
+var native_recording_play_button = document.querySelector(".native-area .buttons .play.button")
+var native_recording_record_button = document.querySelector(".native-area .buttons .record.button")
+var native_recording_stop_button = document.querySelector(".native-area .buttons .stop.button")
+var native_audio_display_wave_surfer = WaveSurfer.create({
+    container: ".native-area .display",
+    progressColor: 'purple',
+    waveColor: 'red',
+})
+native_audio_display_wave_surfer.load("/static/recording_test/audio/kekko.wav")
+native_recording_play_button.onclick = function() {
+    native_audio_display_wave_surfer.playPause()
+}
 
 var user_recorded_audio_element = document.querySelector(".user-area .clip .recording")
 var user_play_button = document.querySelector(".user-area .buttons .play.button")
 var user_record_button = document.querySelector(".user-area .buttons .record.button")
 var user_stop_button = document.querySelector(".user-area .buttons .stop.button")
+var user_recorded_audio_display_wave_surfer = WaveSurfer.create({
+    container: ".user-area .display",
+    progressColor: 'purple',
+    waveColor: 'red',
+})
 
 // --------------------
 // Play Button
 // --------------------
 function on_user_play_button_click() {
-    user_recorded_audio_element.play()
+    // user_recorded_audio_element.play()
+    user_recorded_audio_display_wave_surfer.playPause()
     console.log(media_recorder.state)
     console.log("audio clip start play")
 }

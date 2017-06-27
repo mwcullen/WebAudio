@@ -13,6 +13,7 @@
     <!-- Scripts -->
     <!-- Defer is used in order to guarantee that script is called after page render -->
     <script type="text/javascript" src="{% static 'recording_test/js/recording_test.js' %}" defer></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.3.7/wavesurfer.min.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                 display
             </div>
             <div>
-                <audio class="recording" src="{% static 'recording_test/audio/kekko.wav' %}" controls></audio>
+                <audio class="recording" src="{% static 'recording_test/audio/kekko.wav' %}"></audio>
             </div>
             <div class="pitch">
                 Pitch
@@ -60,7 +61,7 @@
                 display
             </div>
             <div>
-                <audio class="recording" controls>
+                <audio class="recording">
                     this is a test audio element
                 </audio>
             </div>
