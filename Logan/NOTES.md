@@ -89,4 +89,7 @@ If those don't work revisit: http://www.bestdevlist.com/javascript-audio-librari
 - Speech scientist brought in for crime investigation to compare the audio found
 - Research "Formants" speech visualization tools
 - Stress, Rythm, Intonation from Roxi's school work
-- 
+- Talk to subject matter experts on signal processing
+    - http://ecee.engineering.asu.edu/people/visar-berisha/
+    - http://ecee.engineering.asu.edu/people/andreas-spanias/
+    - https://medicine.wsu.edu/speech-and-hearing-sciences-2/
