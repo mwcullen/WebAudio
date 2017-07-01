@@ -51,7 +51,9 @@ var handleSuccess = function(stream) {
           transcript_interim+= e.results[i][0].transcript;
         }
       }
-      result.innerHTML = transcript_interim;
+      if(transcript_interim.length != 0){
+        result.innerHTML = transcript_interim;
+      }
     };
 
     recognition.onend = function(e){
