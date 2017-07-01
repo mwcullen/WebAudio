@@ -27,7 +27,7 @@ var handleSuccess = function(stream) {
 
         stop.disabled = false;
         record.disabled = true;
-    }
+    };
 
     stop.onclick = function() {
         mediaRecorder.stop();
@@ -38,25 +38,25 @@ var handleSuccess = function(stream) {
 
         stop.disabled = true;
         record.disabled = false;
-    }
+    };
 
     recognition.onresult = function(e) {
       var transcript_interim = '';
 
       for(var i = e.resultIndex; i < e.results.length; ++i){
-        if(event.results[i].isFinal){
-          transcript_final += event.results[i][0].transcript;
+        if(e.results[i].isFinal){
+          transcript_final += e.results[i][0].transcript;
         }
         else {
-          transcript_interim+= event.results[i][0].transcript;
+          transcript_interim+= e.results[i][0].transcript;
         }
       }
       result.innerHTML = transcript_interim;
-    }
+    };
 
     recognition.onend = function(e){
       result.innerHTML = transcript_final;
-    }
+    };
 
     mediaRecorder.onstop = function(e) {
         console.log("data available after MediaRecorder.stop() called.");
@@ -69,11 +69,11 @@ var handleSuccess = function(stream) {
 
 
         console.log("recorder stopped");
-    }
+    };
 
     mediaRecorder.ondataavailable = function(e) {
         recordedChunks.push(e.data);
-    }
+    };
 
 };
 
