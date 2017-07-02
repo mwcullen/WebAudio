@@ -56,6 +56,10 @@
 
 .user-area .clip .recording {}
 
+.user-area .clip .speech-recognition {
+    background-color: rgba(255, 127, 255, 1);
+}
+
 .user-area .clip .pitch {
     background-color: rgba(255, 0, 0, 1);
     display: inline;
