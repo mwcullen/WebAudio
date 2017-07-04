@@ -6,37 +6,101 @@ media_device_constraints = {
     video: false,
 }
 chunks = []
-transcript_interim = ""
-transcript_final = ""
+speech_fragments = []
+user_recording_start_time = 0
+user_recording_end_time = 0
+user_recording_duration_in_seconds = 0
 
 // -----------------------------------------------------------------------------
-// Configure media device
+// Helper Classes (these are trash)
+// -----------------------------------------------------------------------------
+class SpeechFragment {
+    constructor(speech_recognition_result, time_stamp) {
+        this.speech_recognition_result = speech_recognition_result
+        this.time_stamp = time_stamp
+
+        // this.height = height;
+        // this.width = width;
+    }
+
+    get text() {
+        // this.speech_recognition_results has index helper function to retrieve
+        // SpeechRecognitionAlternative
+        return this.speech_recognition_result[0].transcript
+    }
+
+    // calcArea() {
+    //     return this.height * this.width;
+    // }
+}
+
+// -----------------------------------------------------------------------------
+// Helper Functions
+// -----------------------------------------------------------------------------
+function calculate_duration_in_seconds(start_time, end_time) {
+    var duration = end_time - start_time
+    var duration_in_seconds = duration / 1000
+    var duration_to_return = Math.abs(duration_in_seconds)
+
+    console.log("Total duration: " + duration_to_return)
+
+    return duration_to_return
+}
+
+function generate_transcript(speech_fragments) {
+    string_to_return = ""
+
+    for (var index = 0; index < speech_fragments.length; index++) {
+        speech_fragment = speech_fragments[index]
+        string_to_return += speech_fragment.text
+    }
+
+    return string_to_return
+}
+
+// -----------------------------------------------------------------------------
+// Configure Input Devices
 // -----------------------------------------------------------------------------
 var media_recorder = null
 var speech_recognition = null
 
-
 function speech_recognition_on_start(event) {
-    transcript_final = ""
+    user_speech_recognition_output_element.innerHTML = ""
+    speech_fragments = []
+
+    user_recording_start_time = Date.now()
 }
 
 function speech_recognition_on_result(event) {
-    console.log("Speech recognition has result.")
-    transcript_interim = ""
+    speech_fragments = []
+    speech_recognition_results = event.results
 
-    for (var index = event.resultIndex; index < event.results.length; index++) {
-        if (event.results[index].isFinal) {
-            transcript_final += event.results[index][0].transcript
-        } else {
-            transcript_interim += event.results[index][0].transcript
-        }
+    // TODO: Not sure what event.resultIndex really does?
+    // https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognitionEvent/resultIndex
+    for (var index = event.resultIndex; index < speech_recognition_results.length; index++) {
+        current_speech_recognition_result = speech_recognition_results[index]
+
+        current_timestamp = Date.now()
+        current_speech_recognition_result_timestamp = current_timestamp - user_recording_start_time
+
+        new_speech_fragment = new SpeechFragment(current_speech_recognition_result, current_speech_recognition_result_timestamp);
+        speech_fragments.push(new_speech_fragment)
+
+        // No longer needed
+        // if (current_speech_recognition_result.isFinal) {
     }
-    user_speech_recognition_output_element.innerHTML = transcript_interim
+
+    user_speech_recognition_output_element.innerHTML = generate_transcript(speech_fragments)
 }
 
 function speech_recognition_on_end(event) {
     // console.log("Speech recognition has finished.")
-    user_speech_recognition_output_element.innerHTML = transcript_final
+
+    // TODO: fix variable assignment to be temporary or not
+    user_recording_end_time = Date.now()
+    user_recording_duration_in_seconds = calculate_duration_in_seconds(user_recording_start_time, user_recording_end_time)
+
+    user_speech_recognition_output_element.innerHTML = generate_transcript(speech_fragments)
 }
 
 function media_device_request_on_success(media_device_stream) {
@@ -50,9 +114,7 @@ function media_device_request_on_success(media_device_stream) {
     speech_recognition.onend = speech_recognition_on_end
     speech_recognition.continuous = true
     speech_recognition.interimResults = true
-    speech_recognition.lang = "ja"
-
-    // speech_recognition.lang = "en-US"
+    speech_recognition.lang = "ja" // "en-US"
 }
 
 function media_device_request_on_error(error) {
